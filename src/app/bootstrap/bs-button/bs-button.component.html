@@ -1,0 +1,16 @@
+<button
+  class=" {{ css }}"
+  [class.btn-block]="block"
+  [class.active]="active"
+  [disabled]="disabled"
+  type="{{ type !== undefined ? type : 'button' }}"
+>
+  <i
+    *ngIf="icon !== undefined"
+    class="fa"
+    [ngClass]="getButtonIconClass()"
+    [class.fa-spin]="spin && !pulse"
+    [class.fa-pulse]="pulse && !spin"
+  ></i>
+  {{ text }}
+</button>
