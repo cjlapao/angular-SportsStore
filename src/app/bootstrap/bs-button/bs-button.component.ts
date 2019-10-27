@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'bs-button',
   templateUrl: './bs-button.component.html',
   styleUrls: ['./bs-button.component.less']

@@ -18,10 +18,5 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
-  "rules": {
-    "no-use-before-declare": false,
-    "directive-selector": [true, "attribute", "app", "camelCase"],
-    "component-selector": [true, "element", "app", "kebab-case"]
-  }
+  "plugins": ["@typescript-eslint"]
 }

@@ -1,20 +1,21 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
-const APP_SECRET = "b8311057-8d08-4455-9b5b-8e9245944a0d";
-const USERNAME = "admin";
-const PASSWORD = "secret";
+const APP_SECRET = 'b8311057-8d08-4455-9b5b-8e9245944a0d';
+const USERNAME = 'admin';
+const PASSWORD = 'secret';
 
 module.exports = function(req, res, next) {
   if (
-    (req.url == "/api/login" || req.url == "/login") &&
-    req.method == "POST"
+    (req.url == '/api/login' || req.url == '/login') &&
+    req.method == 'POST'
   ) {
+    console.log(`username: ${req.body.name}, password: ${req.body.password}`);
     if (
       req.body != null &&
       req.body.name == USERNAME &&
       req.body.password == PASSWORD
     ) {
-      let token = jwt.sign({ data: USERNAME, expiresIn: "1h" }, APP_SECRET);
+      let token = jwt.sign({ data: USERNAME, expiresIn: '1h' }, APP_SECRET);
       res.json({ success: true, token: token });
     } else {
       res.json({ success: false });
@@ -22,22 +23,24 @@ module.exports = function(req, res, next) {
     res.end();
     return;
   } else if (
-    ((req.url.startsWith("/api/products") ||
-      req.url.startsWith("/products") ||
-      (req.url.startsWith("/api/categories") ||
-        req.url.startsWith("categories"))) &&
-      req.method != "GET") ||
-    ((req.url.startsWith("/api/orders") || req.url.startsWith("/orders")) &&
-      req.method != "POST")
+    ((req.url.startsWith('/api/products') ||
+      req.url.startsWith('/products') ||
+      (req.url.startsWith('/api/categories') ||
+        req.url.startsWith('categories'))) &&
+      req.method != 'GET') ||
+    ((req.url.startsWith('/api/orders') || req.url.startsWith('/orders')) &&
+      req.method != 'POST')
   ) {
-    let token = req.headers["authorization"];
-    if (token != null && token.startsWith("Bearer<")) {
+    let token = req.headers['authorization'];
+    if (token != null && token.startsWith('Bearer<')) {
       token = token.substring(7, token.length - 1);
       try {
         jwt.verify(token, APP_SECRET);
         next();
         return;
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     }
     res.statusCode = 401;
     res.end();
