@@ -84,8 +84,8 @@
           class="m-1"
           [routerLink]="['/checkout']"
           routerLinkActive="router-link-active"
-          disabled="{{ cart.lines.length <= 0 }}"
-          text="Checkout"
+          disabled="{{ cart.lines.length <= 0 && connected }}"
+          text="{{ connected ? 'Checkout' : 'Offline' }}"
         ></bs-button>
       </div>
     </div>

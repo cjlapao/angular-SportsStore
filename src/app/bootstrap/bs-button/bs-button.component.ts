@@ -1,6 +1,5 @@
 import { Common } from './../helpers/common';
 import { BootstrapSizes } from '../helpers/sizes';
-import { Icons } from './../../fontawesome/icons/icons';
 import { BootstrapColors } from '../helpers/colors';
 import {
   Component,
@@ -32,7 +31,7 @@ export class BsButtonComponent implements OnInit, OnChanges {
   private bootstrapColors: BootstrapColors;
   public css: string;
 
-  constructor(private icons: Icons) {
+  constructor() {
     this.bootstrapColors = new BootstrapColors();
   }
 
@@ -100,6 +99,6 @@ export class BsButtonComponent implements OnInit, OnChanges {
   }
 
   getButtonIconClass(): string {
-    return this.icons.getIconClass(this.icon);
+    return `fa-${this.icon})`;
   }
 }
