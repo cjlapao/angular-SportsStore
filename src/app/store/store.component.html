@@ -13,17 +13,15 @@
       >
         Home
       </button>
-      <bs-button
+      <button
         *ngFor="let cat of categories"
-        text="{{ cat }}"
-        block
-        outline
-        color="warning"
+        class="btn btn-block btn-primary"
         icon="shopping-cart"
-        active="{{ cat == selectedCategory }}"
+        [class.active]="cat == selectedCategory"
         (click)="changeCategory(cat)"
       >
-      </bs-button>
+        {{ cat }}
+      </button>
       <button class="btn btn-block btn-danger m-t-3" routerLink="/admin">
         Admin
       </button>

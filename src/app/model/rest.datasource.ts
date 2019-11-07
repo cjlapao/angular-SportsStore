@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -16,7 +17,7 @@ export class RestDataSource {
 
   constructor(private http: HttpClient) {
     // this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
-    this.baseUrl = '/api/';
+    this.baseUrl = environment.connection;
   }
 
   getProducts(): Observable<Product[]> {
